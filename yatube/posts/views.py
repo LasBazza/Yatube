@@ -112,7 +112,11 @@ def post_edit(request, username, post_id):
     post = get_object_or_404(Post, id=post_id, author__username=username)
     if request.user != post.author:
         return redirect('post', post_id=post.id, username=username)
-    form = PostForm(request.POST or None, files=request.FILES or None, instance=post)
+    form = PostForm(
+        request.POST or None,
+        files=request.FILES or None,
+        instance=post
+    )
     if form.is_valid():
         post.save()
         return redirect('post', post_id=post.id, username=username)

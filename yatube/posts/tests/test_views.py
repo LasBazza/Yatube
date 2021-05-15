@@ -300,5 +300,3 @@ class PostsPagesTests(TestCase):
         """Новый пост не появляется в ленте других пользователей"""
         response = self.not_follow_client.get(reverse('follow_index'))
         self.assertEqual(len(response.context['page']), 0)
-
-
