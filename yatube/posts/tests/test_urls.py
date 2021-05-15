@@ -3,7 +3,7 @@ from http import HTTPStatus
 from django.test import TestCase, Client
 from django.urls import reverse
 
-from yatube.posts.models import Group, Post, User
+from posts.models import Group, Post, User
 
 
 class PostsURLTests(TestCase):

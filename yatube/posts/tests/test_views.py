@@ -9,8 +9,8 @@ from django.urls import reverse
 from django.core.cache import cache
 from django.core.cache.utils import make_template_fragment_key
 
-from yatube.posts.models import Follow, Group, Post, User
-from yatube.yatube import settings
+from posts.models import Follow, Group, Post, User
+from yatube import settings
 
 TEMP_MEDIA_ROOT = tempfile.mkdtemp(dir=settings.BASE_DIR)
 
