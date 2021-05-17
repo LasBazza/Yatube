@@ -38,7 +38,7 @@ class PostsURLTests(TestCase):
             f'/{self.user_author.username}/{self.post.id}/': HTTPStatus.OK,
             f'/{self.user_author.username}/{self.post.id}/edit/':
                 HTTPStatus.FOUND,
-            f'/{self.user_author.username}/{self.post.id}/comment':
+            f'/{self.user_author.username}/{self.post.id}/comment/':
                 HTTPStatus.FOUND,
         }
         for url, code in pages_codes.items():

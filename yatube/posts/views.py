@@ -9,7 +9,7 @@ from .models import Follow, Group, Post, User
 
 def index(request):
     """Show last posts on the homepage"""
-    post_list = Post.objects.all()
+    post_list = Post.objects.select_related('group').all()
     paginator = Paginator(post_list, settings.PAGINATE_BY)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
@@ -144,13 +144,7 @@ def add_comment(request, username, post_id):
 
 @login_required
 def follow_index(request):
-    user = request.user
-    # post_list = Post.objects.filter(author__follower__user=user)
-    follows = user.follower.all()
-    authors = []
-    for follow in follows:
-        authors.append(follow.author)
-    post_list = Post.objects.filter(author__in=authors)
+    post_list = Post.objects.filter(author__following__user=request.user)
     paginator = Paginator(post_list, settings.PAGINATE_BY)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
@@ -162,11 +156,7 @@ def profile_follow(request, username):
     user = request.user
     author = get_object_or_404(User, username=username)
     if user != author:
-        if not Follow.objects.filter(user=user, author=author).exists():
-            Follow.objects.create(
-                user=user,
-                author=author,
-            )
+        Follow.objects.get_or_create(user=user, author=author)
     return redirect('profile', username=username)
 
 
