@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import CommentForm, PostForm
+from .forms import CommentForm, PostForm, GroupForm
 from .models import Follow, Group, Post, User
 
 
@@ -144,6 +144,7 @@ def add_comment(request, username, post_id):
 
 @login_required
 def follow_index(request):
+    """Show my subscription's"""
     post_list = Post.objects.filter(author__following__user=request.user)
     paginator = Paginator(post_list, settings.PAGINATE_BY)
     page_number = request.GET.get('page')
@@ -153,6 +154,7 @@ def follow_index(request):
 
 @login_required
 def profile_follow(request, username):
+    """Follow user"""
     user = request.user
     author = get_object_or_404(User, username=username)
     if user != author:
@@ -162,10 +164,23 @@ def profile_follow(request, username):
 
 @login_required
 def profile_unfollow(request, username):
+    """Unfollow user"""
     user = request.user
     author = get_object_or_404(User, username=username)
     Follow.objects.filter(user=user, author=author).delete()
     return redirect('profile', username=username)
+
+
+@login_required
+def group_create(request):
+    """Create new group"""
+    form = GroupForm(request.POST or None)
+
+    if form.is_valid():
+        group = form.save()
+        return redirect('group', slug=group.slug)
+
+    return render(request, 'group_create.html', {'form': form})
 
 
 def page_not_found(request, exception):

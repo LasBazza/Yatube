@@ -5,9 +5,21 @@ User = get_user_model()
 
 
 class Group(models.Model):
-    title = models.CharField(max_length=200)
-    description = models.TextField()
-    slug = models.SlugField(max_length=100, unique=True)
+    title = models.CharField(
+        max_length=200,
+        verbose_name='Название группы',
+        help_text='Придумайте название для вашей группы'
+    )
+    description = models.TextField(
+        verbose_name='Описание группы',
+        help_text='Добавьте описание группы'
+    )
+    slug = models.SlugField(
+        max_length=100,
+        unique=True,
+        verbose_name='URL группы',
+        help_text='URL группы в адресной строке'
+    )
 
     def __str__(self):
         return self.title
@@ -68,6 +80,9 @@ class Comment(models.Model):
         'date published',
         auto_now_add=True
     )
+
+    def __str__(self):
+        return self.text
 
 
 class Follow(models.Model):

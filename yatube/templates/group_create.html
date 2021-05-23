@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
-{% block header %}{% if post %}Редактировать запись{% else %}Новая запись{% endif %}{% endblock %}
-{% block title %}{% if post %}Редактировать запись{% else %}Новая запись{% endif %}{% endblock %}
+{% block header %}Создать группу{% endblock %}
+{% block title %}Создать группу{% endblock %}
 {% load user_filters %}
 
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-md-8 p-5">
         <div class="card">
-            <div class="card-header">{% if post %}Редактировать запись{% else %}Создать запись{% endif %}</div>
+            <div class="card-header">Создать группу</div>
             <div class="card-body">
 
                 <form method="post" enctype="multipart/form-data">
@@ -29,9 +29,7 @@
 
                     <div class="col-md-4 offset-md-5">
                         <button type="submit" class="btn btn-success">
-                            {% if post %}Сохранить запись{% else %}
-                            Создать запись
-                            {% endif %}
+                            Создать группу
                         </button>
                     </div>
                 </form>

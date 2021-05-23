@@ -1,6 +1,6 @@
 <div class="card mb-3 mt-1 shadow-sm">
     {% load thumbnail %}
-    {% thumbnail post.image "850x600" crop="center" upscale=True as im %}
+    {% thumbnail post.image "600x350" crop="center" upscale=True as im %}
         <img class="card-img" src="{{ im.url }}">
     {% endthumbnail %}
         <div class="card-body">
@@ -12,7 +12,7 @@
 
             {% if post.group %}
             <a class="card-link muted" href="{% url 'group' post.group.slug %}">
-                <strong class="d-block" style="color:#fd7e14">#{{ post.group.title }}</strong>
+                <strong class="d-block" style="color:#fd7e14">{{ post.group.title }}</strong>
             </a>
             {% endif %}
 
