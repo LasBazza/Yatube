@@ -131,7 +131,7 @@ def add_comment(request, username, post_id):
         id=post_id,
         author__username=username
     )
-    author = post.author
+    author = request.user
     form = CommentForm(request.POST or None)
     if form.is_valid():
         comment = form.save(commit=False)
