@@ -20,7 +20,7 @@
 
 > `pip install -r requirements.txt` 
   
-4. Выполнить миграции из папки */yatube*, содержащей *файл manage.py*
+4. Выполнить миграции: из папки */yatube*, содержащей *файл manage.py*, выполнить команду
 
 > `python manage.py migrate`
 
