@@ -12,20 +12,27 @@
 
 2. Создать виртуальное окружение и активировать его
   
-> `python -m venv venv`
+```
+python -m venv venv
 
-> `source venv/Scripts/activate`
+source venv/Scripts/activate
+```
 
 3. Установить необходимые пакеты
 
-> `pip install -r requirements.txt` 
+```
+pip install -r requirements.txt
+```
   
 4. Выполнить миграции: из папки */yatube*, содержащей *файл manage.py*, выполнить команду
-
-> `python manage.py migrate`
+```
+python manage.py migrate
+```
 
 5. Запустить проект
 
-> `python manage.py runserver`
+```
+python manage.py runserver
+```
 
 Готово! 
