@@ -2,14 +2,18 @@
 
 <!-- Комментарии -->
 {% for item in comments %}
-<div class="media card mb-4">
+<div class="card mb-3 mt-1 shadow-sm">
     <div class="media-body card-body">
-        <h5 class="mt-0">
-            <a href="{% url 'profile' item.author.username %}"
-               name="comment_{{ item.id }}" style="color:#6f42c1">
-                {{ item.author.username }}
-            </a>
-        </h5>
+        <div class="d-flex justify-content-between align-items-center">
+            <h5 class="mt-0">
+
+                <a href="{% url 'profile' item.author.username %}"
+                   name="comment_{{ item.id }}" style="color:#6f42c1">
+                    {{ item.author.username }}
+                </a>
+            </h5>
+            <small class="text-muted">{{ item.created|date:"d M Y" }}</small>
+        </div>
         <p>{{ item.text | linebreaksbr }}</p>
     </div>
 </div>

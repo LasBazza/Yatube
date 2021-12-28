@@ -24,7 +24,7 @@
                     </div>
                     {% endif %}
                     <!-- Ссылка на страницу записи в атрибуте href-->
-                    <a class="btn btn-sm text-muted" href="{% url 'post' post.author.username post.id %}" role="button">Добавить комментарий</a>
+                    <a class="btn btn-sm text-muted" href="{% url 'add_comment' post.author.username post.id %}" role="button">Добавить комментарий</a>
                     {% if user == post.author %}<!-- Ссылка на редактирование, показывается только автору записи -->
                         <a class="btn btn-sm text-muted" href="{% url 'post_edit' post.author.username post.id %}" role="button">Редактировать</a>
                     {% endif %}
