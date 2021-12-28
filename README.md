@@ -50,8 +50,6 @@ docker-compose up
 
 **4. Создать суперпользователя**
 
-Выполнить
-
 ```
 docker-compose exec web python manage.py createsuperuser
 ```
