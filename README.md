@@ -7,32 +7,53 @@
 
 
 Разработан на основе фреймворка Django 2.2, использованы разметка и стили Bootstrap.
-## Развертывание проекта ##
-1. Склонировать репозиторий
 
-2. Создать виртуальное окружение и активировать его
-  
-```
-python -m venv venv
+* Python 3.8
+* Django 2.2
+* Bootstrap
+* Gunicorn
+* PostgreSQL
+* Docker
+* Nginx
 
-source venv/Scripts/activate
-```
+## Запуск проекта
 
-3. Установить необходимые пакеты
-
-```
-pip install -r requirements.txt
-```
-  
-4. Выполнить миграции: из папки */yatube*, содержащей *файл manage.py*, выполнить команду
-```
-python manage.py migrate
-```
-
-5. Запустить проект
+**1. Склонировать репозиторий**
 
 ```
-python manage.py runserver
+git clone https://github.com/LasBazza/Yatube.git
 ```
 
-Готово! 
+**2. Заполнить файл _.env_ и поместить его в корневую папку проекта**
+
+```
+DEBUG=False
+SECRET_KEY=django_secret_key
+ALLOWED_HOSTS=web
+
+DB_ENGINE=django.db.backends.postgresql
+DB_NAME=postgres
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=your_password
+DB_HOST=db
+DB_PORT=5432
+```
+
+**3. Запустить docker-compose**
+
+Выполнить в корневой папке проекта команду
+
+```
+docker-compose up
+```
+
+
+**4. Создать суперпользователя**
+
+Выполнить
+
+```
+docker-compose exec web python manage.py createsuperuser
+```
+
+Проект доступен на http://127.0.0.1/. Админ-панель django на http://127.0.0.1/admin/.
